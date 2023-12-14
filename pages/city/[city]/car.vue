@@ -1,14 +1,13 @@
 <template>
   <div>
     <navbar />
-
     <div
       class="mx-auto mt-4 max-w-7xl space-y-4 px-4 xs:px-8 sm:px-10 lg:px-16 w-3/5"
     >
-      <car-detail-hero />
-      <car-detail-attributes />
-      <car-detail-description />
-      <car-detail-contact />
+      <div class="mt-32 flex">
+        <car-sidebar />
+        <nuxt-page />
+      </div>
     </div>
   </div>
 </template>
@@ -17,7 +16,9 @@
 const route = useRoute();
 
 useHead({
-  title: `${toTitleCase(route.params.name)}`,
+  title: `${
+    route.params.make ? toTitleCase(route.params.make) : "Cars"
+  } in ${toTitleCase(route.params.city)}`,
 });
 
 function toTitleCase(str: string | string[]): void | string {
