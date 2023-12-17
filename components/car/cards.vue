@@ -11,11 +11,17 @@
 </template>
 
 <script setup lang="ts">
+import type { Car } from "~/helpers/interfaces";
+
 interface Favorite {
   [key: string]: boolean;
 }
 
-const { cars } = useCars();
+defineProps({
+  cars: {
+    type: Object as PropType<Car[] | null>,
+  },
+});
 
 const favorite = useLocalStorage<Favorite>("favorite", {});
 

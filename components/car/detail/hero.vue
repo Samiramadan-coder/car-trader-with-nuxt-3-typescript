@@ -20,7 +20,7 @@ import type { Car } from "~/helpers/interfaces";
 
 defineProps({
   car: {
-    type: Object as PropType<Car>,
+    type: Object as PropType<Car | null>,
   },
 });
 </script>
