@@ -6,8 +6,8 @@ type Filters = Partial<{
   make: unknown;
 }>;
 
-export default async (city: string, filters: Filters) => {
-  const { data, error } = await useFetch<Car[]>(`/api/cars/${city}`, {
+export default async (city: string | string[], filters: Filters) => {
+  const { data, error, refresh } = await useFetch<Car[]>(`/api/cars/${city}`, {
     params: {
       ...filters,
     },
@@ -20,5 +20,8 @@ export default async (city: string, filters: Filters) => {
     });
   }
 
-  return data;
+  return {
+    data,
+    refresh,
+  };
 };

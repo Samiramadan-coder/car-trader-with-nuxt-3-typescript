@@ -11,18 +11,20 @@
 import type { Car } from "~/helpers/interfaces";
 const route = useRoute();
 const { toTitleCase } = useUtilities();
-const { cars } = useCars();
 
-const car = computed((): Car | undefined =>
-  cars.find((c) => c.id.toString() === route.params.id)
-);
+const { data: car } = await useFetchCar(route.params.id);
+// const { cars } = useCars();
 
-if (!car.value) {
-  throw createError({
-    statusCode: 404,
-    message: `Car with ID: ${route.params.id} does not exist`,
-  });
-}
+// const car = computed((): Car | undefined =>
+//   cars.find((c) => c.id.toString() === route.params.id)
+// );
+
+// if (!car.value) {
+//   throw createError({
+//     statusCode: 404,
+//     message: `Car with ID: ${route.params.id} does not exist`,
+//   });
+// }
 
 useHead({
   title: `${toTitleCase(route.params.name)}`,
